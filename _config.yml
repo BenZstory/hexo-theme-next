@@ -1168,3 +1168,7 @@ vendors:
 css: css
 js: js
 images: images
+# By default, each asset URL native to NexT contains a query string (including the current version number of NexT).
+# After you update your NexT, it ensures that users always get the most up-to-date version when requesting resources.
+# Set false to remove query string if you know what you are doing.
+query_string: true

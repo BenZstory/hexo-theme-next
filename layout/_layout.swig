@@ -2,6 +2,10 @@
 
 {# NexT version #}
 {% set version = next_env('version') %}
+{% set querystring = '?v=' + version %}
+{% if not theme.vendors.query_string %}
+  {% set querystring = '' %}
+{% endif %}
 
 {# Language & Config #}
 {% set title = __('title') !== 'title' && __('title') || config.title %}
