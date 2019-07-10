@@ -5,16 +5,18 @@ NexT.utils = NexT.$u = {
   /**
    * Wrap images with fancybox support.
    */
-  wrapImageWithFancyBox: function() {
+  wrapImageWithFancyBox: function(replace_from, replace_to, with_caption) {
     $('.content img')
-      .not('#qr img')
+      .not(':hidden')
       .each(function() {
         var $image = $(this);
         var imageTitle = $image.attr('title') || $image.attr('alt');
         var $imageWrapLink = $image.parent('a');
 
         if ($imageWrapLink.length < 1) {
-          var imageLink = $image.attr('data-src') || $image.attr('src');
+          var imageLink = $image.attr('data-original') || $image.attr('src');
+          imageLink = imageLink.replace(replace_from, replace_to)
+          
           $imageWrapLink = $image.wrap('<a class="fancybox fancybox.image" href="' + imageLink + '" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>').parent('a');
           if ($image.is('.post-gallery img')) {
             $imageWrapLink.addClass('post-gallery-img');
@@ -28,7 +30,7 @@ NexT.utils = NexT.$u = {
           }
         }
 
-        if (imageTitle) {
+        if (with_caption && imageTitle) {
           $imageWrapLink.append('<p class="image-caption">' + imageTitle + '</p>');
           // Make sure img title tag will show correctly in fancybox
           $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
@@ -46,7 +48,11 @@ NexT.utils = NexT.$u = {
   },
 
   lazyLoadPostsImages: function() {
-    lozad('.content img').observe();
+    $('#posts').find('img').lazyload({
+      //placeholder: '/images/loading.gif',
+      effect   : 'fadeIn',
+      threshold: 0
+    });
   },
 
   /**

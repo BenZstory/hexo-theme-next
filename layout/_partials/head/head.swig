@@ -45,7 +45,7 @@
   <meta name="baidu-site-verification" content="{{ theme.baidu_site_verification }}"/>
 {% endif %}
 
-{% if theme.fancybox %}
+{% if theme.fancybox.enable %}
   {% set fancybox_css_uri = url_for(theme.vendors._internal + '/fancybox/source/jquery.fancybox.css') %}
   {% if theme.vendors.fancybox_css %}
     {% set fancybox_css_uri = theme.vendors.fancybox_css %}
@@ -97,7 +97,12 @@
     sidebar: {{ theme.sidebar | json_encode }},
     back2top: {{ theme.back2top.enable }},
     back2top_sidebar: {{ theme.back2top.sidebar }},
-    fancybox: {{ theme.fancybox }},
+    fancybox: {
+      enable: {{theme.fancybox.enable}},
+      replace_from: {{theme.fancybox.replace_from}},
+      replace_to: '{{theme.fancybox.replace_to}}',
+      with_caption: {{theme.fancybox.with_caption}},
+    },
     fastclick: {{ theme.fastclick }},
     lazyload: {{ theme.lazyload }},
     tabs: {{ theme.tabs.enable }},

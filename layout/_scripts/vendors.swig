@@ -21,7 +21,7 @@
 {% set js_vendors.velocity = 'velocity/velocity.min.js?v=1.2.1' %}
 {% set js_vendors.velocity_ui = 'velocity/velocity.ui.min.js?v=1.2.1' %}
 
-{% if theme.fancybox %}
+{% if theme.fancybox.enable %}
   {% set js_vendors.fancybox = 'fancybox/source/jquery.fancybox.pack.js' %}
 {% endif %}
 

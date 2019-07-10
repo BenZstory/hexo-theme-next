@@ -32,7 +32,7 @@ $(document).ready(function() {
    * Register JS handlers by condition option.
    * Need to add config option in Front-End at 'layout/_partials/head.swig' file.
    */
-  CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
+  CONFIG.fancybox.enable && NexT.utils.wrapImageWithFancyBox(CONFIG.fancybox.replace_from, CONFIG.fancybox.replace_to, CONFIG.fancybox.with_caption);
   CONFIG.tabs && NexT.utils.registerTabsTag();
 
   NexT.utils.embeddedVideoTransformer();
