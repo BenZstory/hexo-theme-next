@@ -601,8 +601,8 @@ calendar:
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: benzbloghexo
   count: true
   lazyload: false
 
@@ -728,16 +728,16 @@ needmoreshare2:
 # ---------------------------------------------------------------
 
 # Baidu Analytics ID
-#baidu_analytics:
+baidu_analytics: 311511b30756494577b67a167866028f
 
 # Growingio Analytics ID
 # Copyright 2015-2018 GrowingIO, Inc. More info available at https://www.growingio.com
 #growingio_analytics: #your projectId
 
 # Google Analytics
-#google_analytics:
-#  tracking_id:
-#  localhost_ignored: true
+google_analytics:
+  tracking_id: UA-101354718-1
+  localhost_ignored: true
 
 # CNZZ count
 #cnzz_siteid:
