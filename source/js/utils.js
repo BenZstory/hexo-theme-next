@@ -11,10 +11,13 @@ NexT.utils = {
   /**
    * Wrap images with fancybox.
    */
-  wrapImageWithFancyBox: function() {
+  wrapImageWithFancyBox: function(replace_from, replace_to, with_caption) {
     document.querySelectorAll('.post-body :not(a) > img, .post-body > img').forEach(element => {
       var $image = $(element);
       var imageLink = $image.attr('data-src') || $image.attr('src');
+      replace_from_regex = new RegExp(replace_from)
+      imageLink = imageLink.replace(replace_from_regex, replace_to)
+
       var $imageWrapLink = $image.wrap(`<a class="fancybox fancybox.image" href="${imageLink}" itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>`).parent('a');
       if ($image.is('.post-gallery img')) {
         $imageWrapLink.attr('data-fancybox', 'gallery').attr('rel', 'gallery');
@@ -25,7 +28,7 @@ NexT.utils = {
       }
 
       var imageTitle = $image.attr('title') || $image.attr('alt');
-      if (imageTitle) {
+      if (with_caption && imageTitle) {
         $imageWrapLink.append(`<p class="image-caption">${imageTitle}</p>`);
         // Make sure img title tag will show correctly in fancybox
         $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
