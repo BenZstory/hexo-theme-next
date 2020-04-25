@@ -154,8 +154,21 @@
             </span>
           {%- endif %}
 
+          {%- if post.tags and post.tags.length %}
+            {%- if theme.tag_icon %}
+              {%- set tag_indicate = '<i class="fa fa-tag"></i>' %}
+            {% else %}
+              {%- set tag_indicate = '#' %}
+            {%- endif %}
+            <div class="post-tags" style="margin:5px">
+              {%- for tag in post.tags.toArray() %}
+                <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ tag.name }}</a>
+              {%- endfor %}
+            </div>
+          {%- endif %}
+
           {%- if post.description and (not theme.excerpt_description or not is_index) %}
-            <div class="post-description">{{ post.description }}</div>
+            <div class="post-description" hidden>{{ post.description }}</div>
           {%- endif %}
 
         </div>
